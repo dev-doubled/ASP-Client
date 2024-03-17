@@ -1,13 +1,14 @@
 import classNames from "classnames/bind";
 import { useLocation, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 import { fetchPinInformationById } from "~/services/artService";
 import { AuthContext } from "~/contexts/AuthContext";
 
 import MainHeader from "~/layouts/MainHeader";
 import PinDetail from "~/components/Pin/PinDetail";
-// import PinRelated from "~/components/Pin/PinRelated";
+import PinRelated from "~/components/Pin/PinRelated";
 import ReportPin from "~/components/Pin/PinDetail/Top/MoreOptionsPin/ReportPin";
 import LoadingSpinner from "~/components/LoadingSpinner";
 import NoPackagePopup from "~/components/Popup/NoPackagePopup";
@@ -16,7 +17,6 @@ import UpgradePackagePopup from "~/components/Popup/UpgradePackagePopup";
 
 import styles from "./Pin.module.scss";
 import AccessPrivatePopup from "~/components/Popup/AccessPrivatePopup";
-import { ClipLoader } from "react-spinners";
 const cx = classNames.bind(styles);
 function Pin({ onLogout }) {
   const location = useLocation();
@@ -37,7 +37,7 @@ function Pin({ onLogout }) {
     useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 1);
   }, [location]);
 
   useEffect(() => {
@@ -119,7 +119,11 @@ function Pin({ onLogout }) {
                 setPackageDescType={setPackageDescType}
               />
             </div>
-            <div className={cx("pin-related-main")}></div>
+            <div className={cx("pin-related-main")}>
+              {pinInformation?.isCheckedSimilar && (
+                <PinRelated pinInformation={pinInformation && pinInformation} />
+              )}
+            </div>
           </div>
         )}
       </div>

@@ -1,0 +1,90 @@
+.value-wrapper {
+  .search-result-list-wrapper {
+    padding: 0 20px;
+    margin-bottom: 20px;
+
+    .search-result-list {
+      .search-result {
+        cursor: pointer;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+        padding: 8px;
+        transition: 0.15s linear;
+        border-radius: 6px;
+
+        .search-creator-avt {
+          width: 40px;
+          height: 40px;
+          .creator-avt {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+
+        .search-icon {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .icon {
+            font-size: 14px;
+            color: var(--text-color-black);
+          }
+        }
+        .search-text {
+          margin-left: 10px;
+
+          .text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color-black);
+          }
+        }
+
+        &:hover {
+          background-color: #e9e9e9;
+        }
+      }
+    }
+  }
+
+  .search-result-rcm-wrapper {
+    margin-top: 12px;
+    padding: 0 24px;
+
+    .search-result-rcm {
+      height: 70px;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #cdcdcd;
+
+      .rcm-info {
+        .text {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--text-color-black);
+        }
+      }
+
+      .search-pins-btn {
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 20px;
+        background-color: #e9e9e9;
+        .text {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--text-color-black);
+        }
+      }
+    }
+  }
+}

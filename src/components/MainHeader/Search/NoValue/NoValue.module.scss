@@ -1,0 +1,118 @@
+.no-value-wrapper {
+  .ideas-for-you {
+    margin-left: 32px;
+
+    .text {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-color-black);
+    }
+  }
+
+  .ideas-list-container {
+    width: 100%;
+    padding: 0 32px;
+    margin-top: 16px;
+
+    .ideas-list {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      column-gap: 8px;
+      row-gap: 8px;
+      .idea-item {
+        cursor: pointer;
+        user-select: none;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        border-radius: 18px;
+        background-color: #f5f5f5;
+
+        .idea-img {
+          width: 133px;
+          height: 133px;
+          object-fit: cover;
+          border-radius: 18px 0 0 18px;
+        }
+
+        .idea-information {
+          width: fit-content;
+          height: 100%;
+          padding: 16px;
+
+          .text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color-black);
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 1600px) {
+      .ideas-list {
+        grid-template-columns: auto auto auto;
+      }
+    }
+  }
+
+  .popular {
+    margin-left: 32px;
+    margin-top: 32px;
+
+    .text {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-color-black);
+    }
+  }
+
+  .popular-list-container {
+    width: 100%;
+    padding: 0 32px;
+    margin-top: 16px;
+
+    .popular-list {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      column-gap: 8px;
+      row-gap: 8px;
+      .popular-item {
+        cursor: pointer;
+        user-select: none;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        border-radius: 18px;
+        background-color: #f5f5f5;
+
+        .popular-img {
+          width: 133px;
+          height: 133px;
+          object-fit: cover;
+          border-radius: 18px 0 0 18px;
+        }
+
+        .popular-information {
+          width: fit-content;
+          height: 100%;
+          padding: 16px;
+
+          .text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color-black);
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 1600px) {
+      .popular-list {
+        grid-template-columns: auto auto auto;
+      }
+    }
+  }
+}

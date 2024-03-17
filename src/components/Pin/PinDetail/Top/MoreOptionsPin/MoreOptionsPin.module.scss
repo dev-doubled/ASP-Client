@@ -1,0 +1,55 @@
+.more-options-wrapper {
+  position: absolute;
+  top: 57px;
+  left: -23px;
+  width: 190px;
+  height: fit-content;
+  padding: 9px;
+  border-radius: 15px;
+  z-index: 3;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: var(--bg-white);
+  .more-options-container {
+    .download {
+      cursor: pointer;
+      width: 100%;
+      height: 37px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+
+      .text {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-color-black);
+      }
+
+      &:hover {
+        background-color: var(--hover-bg-icon);
+      }
+    }
+
+    .report,
+    .hide,
+    .get-pin {
+      cursor: pointer;
+      width: 100%;
+      height: 37px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+
+      .text {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-color-black);
+      }
+
+      &:hover {
+        background-color: var(--hover-bg-icon);
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.search-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 53px;
+  width: 100%;
+  height: fit-content;
+  max-height: 800px;
+  padding: 24px 0 20px 0;
+  border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: var(--bg-white);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  .search-container {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .search-wrapper {
+    max-height: 680px;
+  }
+}
+
+.search-wrapper::-webkit-scrollbar {
+  display: none;
+}

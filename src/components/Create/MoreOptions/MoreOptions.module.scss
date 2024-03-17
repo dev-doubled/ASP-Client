@@ -1,0 +1,53 @@
+.more-options-content {
+  .option-ads {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+
+    .text {
+      padding: 0 8px;
+      font-size: 16px;
+      color: var(--text-color-black);
+    }
+  }
+  .option-comment {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+
+    .text {
+      padding: 0 8px;
+      font-size: 16px;
+      color: var(--text-color-black);
+    }
+  }
+  .option-show-similar {
+    padding: 8px 0;
+    display: flex;
+
+    .content {
+      padding: 0 8px;
+
+      .main-text {
+        font-size: 16px;
+        color: var(--text-color-black);
+      }
+
+      .sub-text {
+        padding-top: 8px;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        color: var(--text-color-black);
+
+        .text {
+          padding: 4px 0;
+
+          &:nth-child(2) {
+            padding-top: 4px;
+          }
+        }
+      }
+    }
+  }
+}

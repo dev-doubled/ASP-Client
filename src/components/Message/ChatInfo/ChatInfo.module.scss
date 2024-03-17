@@ -1,0 +1,110 @@
+.chat-info-wrapper {
+  flex: 1;
+  height: 100%;
+
+  .chat-info-container {
+    width: 100%;
+    .receiver-avatar {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 0;
+
+      .avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+
+    .receiver-name {
+      width: 100%;
+      padding: 0 16px;
+      text-align: center;
+
+      .name {
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--text-color-black);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .receiver-options {
+      width: 100%;
+      height: fit-content;
+      padding: 16px 16px 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .profile,
+      .notify,
+      .search {
+        width: 70px;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .icon-container {
+          cursor: pointer;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background-color: #e4e6eb;
+
+          .icon {
+            font-size: 20px;
+            color: var(--text-color-black);
+          }
+        }
+
+        .text {
+          padding-top: 8px;
+          font-size: 13px;
+          color: var(--text-color-black);
+        }
+      }
+    }
+
+    .chat-settings-container {
+      width: 100%;
+      height: fit-content;
+      padding: 20px 0;
+
+      .setting-container {
+        cursor: pointer;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .text {
+          font-size: 15px;
+          font-weight: 600;
+          color: var(--text-color-black);
+        }
+
+        .dropdown {
+          padding: 6px;
+          .icon {
+            font-size: 14px;
+            color: var(--text-color-black);
+          }
+        }
+      }
+    }
+  }
+}

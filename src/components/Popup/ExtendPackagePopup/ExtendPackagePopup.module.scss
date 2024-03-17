@@ -1,0 +1,120 @@
+.no-package-wrapper {
+  cursor: zoom-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.75);
+
+  .no-package-container {
+    cursor: context-menu;
+    width: 750px;
+    height: fit-content;
+    border-radius: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: #fff;
+    animation: slideFromTop 0.5s ease forwards;
+
+    .no-package-heading {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid #dedede;
+
+      .heading-text {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--text-color-black);
+      }
+
+      .logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .empty {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    .no-package-notify {
+      width: 100%;
+      padding: 16px 24px;
+      border-bottom: 1px solid #dedede;
+
+      .notify {
+        font-size: 16px;
+        line-height: 22px;
+        color: var(--text-color-black);
+
+        .highlight {
+          font-weight: 600;
+        }
+      }
+    }
+
+    .no-package-action {
+      user-select: none;
+      width: 100%;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .cancel-btn {
+        cursor: pointer;
+        height: 36px;
+        margin-right: 8px;
+        padding: 0 16px;
+        border-radius: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        color: var(--text-color-black);
+        background-color: var(--button-bg-secondary);
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          background-color: var(--button-bg-secondary-hover);
+        }
+      }
+
+      .upgrade-btn {
+        cursor: pointer;
+        height: 36px;
+        padding: 0 16px;
+        border-radius: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        color: var(--text-color-white);
+        background-color: var(--button-bg-primary);
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          background-color: var(--button-bg-primary-hover);
+        }
+      }
+    }
+  }
+}
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

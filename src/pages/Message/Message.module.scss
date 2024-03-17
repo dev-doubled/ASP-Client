@@ -1,0 +1,19 @@
+.message-wrapper {
+  width: 100%;
+  .message-container {
+    width: 100%;
+    height: calc(100vh - 80px);
+    margin-top: 80px;
+    display: flex;
+
+    .no-message-box {
+      width: 60%;
+      height: 100%;
+    }
+
+    .no-info-chat {
+      flex: 1;
+      height: 100%;
+    }
+  }
+}

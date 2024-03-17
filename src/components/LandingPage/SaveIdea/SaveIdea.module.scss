@@ -1,0 +1,168 @@
+.save-ideas-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  .content {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .content-container {
+      user-select: none;
+      text-align: center;
+
+      .search-title {
+        height: 80px;
+        font-size: 60px;
+        font-weight: 700;
+        color: var(--save-idea-text);
+      }
+
+      .search-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .text {
+          margin-top: 16px;
+          width: 400px;
+          font-size: 22px;
+          line-height: 34px;
+          color: var(--save-idea-text);
+        }
+      }
+
+      .explore {
+        margin-top: 24px;
+        .explore-btn {
+          user-select: none;
+          cursor: pointer;
+          padding: 12px 20px;
+          font-size: 16px;
+          font-weight: bold;
+          border: none;
+          outline: none;
+          border-radius: 25px;
+          color: var(--save-idea-bg);
+          background-color: var(--save-idea-text);
+        }
+      }
+    }
+  }
+
+  .images-layout {
+    position: relative;
+    width: 50%;
+    height: 100%;
+
+    .image-card-1 {
+      user-select: none;
+      width: 300px;
+      position: absolute;
+      top: 9%;
+      left: 19%;
+      .image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        border-radius: 50px;
+      }
+    }
+
+    .image-card-2 {
+      user-select: none;
+      width: 245px;
+      position: absolute;
+      top: 6%;
+      right: 12%;
+      .image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        border-radius: 50px;
+      }
+    }
+
+    .image-card-3 {
+      user-select: none;
+      width: 220px;
+      position: absolute;
+      bottom: 15%;
+      right: 19%;
+      .image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        border-radius: 50px;
+      }
+    }
+
+    .image-card-4 {
+      user-select: none;
+      width: 220px;
+      position: absolute;
+      bottom: 12%;
+      left: 24%;
+      .image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        border-radius: 50px;
+      }
+    }
+
+    .image-card-5 {
+      user-select: none;
+      width: 380px;
+      position: absolute;
+      top: 22%;
+      left: 33%;
+      z-index: 1;
+      .image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        border-radius: 50px;
+      }
+    }
+
+    @media screen and (max-width: 1600px) {
+      .image-card-1 {
+        width: 280px;
+        top: 20px;
+        left: 60px;
+      }
+
+      .image-card-2 {
+        width: 225px;
+        top: 0px;
+        right: 80px;
+      }
+
+      .image-card-3 {
+        width: 200px;
+        bottom: 40px;
+        right: 150px;
+      }
+      .image-card-4 {
+        width: 200px;
+        bottom: 10px;
+        left: 100px;
+      }
+
+      .image-card-5 {
+        width: 350px;
+        top: 130px;
+        left: 180px;
+      }
+    }
+  }
+}

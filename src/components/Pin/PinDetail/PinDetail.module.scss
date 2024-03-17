@@ -1,0 +1,35 @@
+.pin-detail {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  border-radius: 32px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 20px 0px;
+  background-color: var(--bg-white);
+
+  .pin-image {
+    flex: 1;
+    height: fit-content;
+
+    .image {
+      user-select: none;
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 32px 0 0 32px;
+    }
+  }
+
+  .pin-loading {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pin-detail-information {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

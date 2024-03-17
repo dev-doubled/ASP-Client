@@ -1,0 +1,80 @@
+.reply-input {
+  width: 100%;
+  height: fit-content;
+  .comment-input {
+    width: 100%;
+    height: fit-content;
+    min-height: 74px;
+    max-height: 152px;
+    padding: 16px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--header-item-bg);
+
+    .input {
+      width: 100%;
+      height: fit-content;
+      min-height: calc(74px - 32px);
+      max-height: calc(152px - 32px);
+      resize: none;
+      border: none;
+      outline: none;
+      overflow: auto;
+      font-family: "Inter", sans-serif;
+      font-size: 15px;
+      color: var(--text-color-input-comment);
+    }
+  }
+
+  .reply-input-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+
+    .cancel-btn {
+      cursor: pointer;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0px 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 20px;
+      color: var(--text-color-black);
+      background-color: var(--button-bg-secondary);
+      transition: 0.15s linear;
+
+      &:hover {
+        background-color: var(--button-bg-secondary-hover);
+      }
+    }
+
+    .save-btn {
+      width: 60px;
+      height: 40px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 20px;
+      color: #a0a0a0;
+      background-color: var(--button-bg-secondary);
+    }
+
+    .save-btn:disabled {
+      cursor: not-allowed;
+    }
+
+    .save-btn-active {
+      cursor: pointer;
+      color: var(--text-color-white);
+      background-color: var(--button-bg-primary);
+
+      &:hover {
+        background-color: var(--button-bg-primary-hover);
+      }
+    }
+  }
+}

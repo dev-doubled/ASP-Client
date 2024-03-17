@@ -1,0 +1,62 @@
+@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+// @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap');
+
+:root {
+  --primary: #e60023;
+
+  --header-logo-color: #cc0000;
+  --header-text-color: #4e4e4e;
+  --header-item-bg: #e9e9e9;
+
+  --button-bg-primary: #e60023;
+  --button-bg-primary-hover: #ad081b;
+  --button-bg-secondary: #efefef;
+  --button-bg-secondary-hover: #e2e2e2;
+
+  --search-idea-bg: #fffd92;
+  --search-idea-text-1st: #6e0f3c;
+  --search-idea-text-2nd: #c31952;
+
+  --save-idea-bg: #ccf6ee;
+  --save-idea-text: #006b6c;
+
+  --shop-idea-bg: #ffdfe9;
+  --shop-idea-text: #c32f00;
+
+  --text-color-black: #111111;
+  --text-color-black-2nd: #333333;
+  --text-color-white: #fff;
+  --text-color-gray-1st: #767676;
+  --text-color-gray-2nd: #5f5f5f;
+  --text-color-input-comment: #211922;
+
+  --bg-black: #111111;
+  --bg-white: #fff;
+  --bg-white-transparent: #ffffffcc;
+  --btn-bg-hover: #f0f0f0;
+
+  --border-color: #dedede;
+  --border-color-2nd: #cdcdcd;
+
+  --icon-color: #5f5f5f;
+  --hover-bg-icon: #e9e9e9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+  text-rendering: optimizeSpeed;
+  color: var(--text-color-black);
+}

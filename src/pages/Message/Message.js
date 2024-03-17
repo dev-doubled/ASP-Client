@@ -32,7 +32,7 @@ function Message({ onLogout }) {
   const [showImageViewer, setShowImageViewer] = useState(false);
 
   useEffect(() => {
-    socket.current = io("https://localhost:5000");
+    socket.current = io("http://localhost:5000");
     socket.current.on("getMessage", (data) => {
       setArrivalMessages({
         senderId: data.senderId,
@@ -54,7 +54,7 @@ function Message({ onLogout }) {
   useEffect(() => {
     socket.current.emit("addUser", userData._id);
     socket.current.on("getUsers", (users) => {
-      // console.log(users);
+      console.log(users);
     });
   }, [userData]);
 

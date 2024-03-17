@@ -81,8 +81,8 @@ function Login({ setShowLogin, setShowSignup, onLogin }) {
             }
             onLogin();
           } catch (error) {
-            const errorMessage = error.response.data.message;
             setLoading(false);
+            const errorMessage = error.response.data.message;
             setErrorMsg(errorMessage);
           }
         })

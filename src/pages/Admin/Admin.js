@@ -1,17 +1,18 @@
 import classNames from "classnames/bind";
 import { jwtDecode } from "jwt-decode";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { fetchUserDataV2 } from "~/services/userService";
 
-import SideBar from "~/components/Admin/SideBar";
-import NotFound from "~/components/NotFound";
-import MainHeader from "~/layouts/MainHeader";
-import OverViewChart from "~/components/Admin/Chart/OverViewChart";
 import DoughnutChart from "~/components/Admin/Chart/DoughnutChart";
+import OverViewChart from "~/components/Admin/Chart/OverViewChart";
+import SideBar from "~/components/Admin/SideBar";
+import MainHeader from "~/layouts/MainHeader";
 
-import styles from "./Admin.module.scss";
 import Widget from "~/components/Admin/Widget";
+import styles from "./Admin.module.scss";
+import NotFound from "~/components/NotFound";
+import { AuthContext } from "~/contexts/AuthContext";
 const cx = classNames.bind(styles);
 
 const colorData = (type) => {
@@ -35,6 +36,7 @@ const colorData = (type) => {
 };
 
 function Admin({ onLogout }) {
+  const { userData } = useContext(AuthContext);
   const [index, setIndex] = useState(0);
   const widgets = [
     {
@@ -87,7 +89,7 @@ function Admin({ onLogout }) {
       current: [45, 50, 52, 55, 58, 60],
     },
   ];
-  const [authorize, setAuthorize] = useState(false);
+  const [authorize, setAuthorize] = useState(true);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -102,8 +104,8 @@ function Admin({ onLogout }) {
           throw new Error("User ID not found in token");
         }
         const userData = await fetchUserDataV2(userId);
-        if (userData && userData.type !== "Admin") {
-          setAuthorize(true);
+        if (userData && userData.type === "Admin") {
+          setAuthorize(false);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -116,7 +118,7 @@ function Admin({ onLogout }) {
   return (
     <>
       {authorize ? (
-        <NotFound />
+        <div>{userData.type !== "Admin" && <NotFound />}</div>
       ) : (
         <div className={cx("admin-wrapper")}>
           <MainHeader onLogout={onLogout} type="Admin" />

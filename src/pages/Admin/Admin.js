@@ -88,6 +88,7 @@ function Admin({ onLogout }) {
     },
   ];
   const [authorize, setAuthorize] = useState(false);
+
   useEffect(() => {
     const getUserData = async () => {
       try {

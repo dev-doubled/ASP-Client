@@ -69,14 +69,14 @@ function AccountOptions({ onLogout, packageName }) {
   const [showPackageFeature, setShowPackageFeature] = useState(false);
 
   const handleLogout = () => {
-    onLogout();
     const refreshToken = TokenService.getRefreshToken();
     api
       .post("/auth/logout", { refreshToken })
       .then((res) => {
+        logout();
+        onLogout();
         TokenService.removeTokens();
         setFeature(null);
-        logout();
       })
       .catch((err) => {
         console.log(err);

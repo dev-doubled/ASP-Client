@@ -13,6 +13,9 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
+let isRefreshing = false;
+let refreshQueue = [];
+
 api.interceptors.request.use(async (config) => {
   const accessToken = TokenService.getAccessToken();
   if (
@@ -33,22 +36,35 @@ api.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      try {
-        // Use the refresh token to obtain a new access token
-        const refreshToken = TokenService.getRefreshToken();
-        const response = await api.post("/auth/token", { refreshToken });
-        const newAccessToken = response.data.accessToken;
-        // Update the access token in the TokenService
-        TokenService.setAccessToken(newAccessToken);
+      if (!isRefreshing) {
+        isRefreshing = true;
 
-        // Retry the original request with the new access token
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        return api(originalRequest);
-      } catch (error) {
-        console.error("Error refreshing token:", error);
-        TokenService.removeTokens();
-        window.location.href = "/";
-        return Promise.reject(error);
+        try {
+          const refreshToken = TokenService.getRefreshToken();
+          const response = await api.post("/auth/token", { refreshToken });
+          const newAccessToken = response.data.accessToken;
+          TokenService.setAccessToken(newAccessToken);
+
+          // Retry the queued requests with the new access token
+          refreshQueue.forEach((cb) => cb(newAccessToken));
+          refreshQueue = [];
+          isRefreshing = false;
+
+          // Retry the original request now that the token has been refreshed
+          return api(originalRequest);
+        } catch (error) {
+          console.error("Error refreshing token:", error);
+          TokenService.removeTokens();
+          return Promise.reject(error);
+        }
+      } else {
+        // If token is already being refreshed, queue the request
+        return new Promise((resolve) => {
+          refreshQueue.push((token) => {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            resolve(api(originalRequest));
+          });
+        });
       }
     }
 

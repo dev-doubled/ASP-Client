@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { publicRoutes } from "~/routes";
+import { AuthProvider } from "./contexts/AuthContext";
 import { MessageProvider } from "./contexts/MessageContext";
 import { PackageProvider } from "./contexts/PackageContext";
 
@@ -37,64 +38,66 @@ function App() {
   };
 
   return (
-    <MessageProvider>
-      <PackageProvider>
-        <Router>
-          <div className="App">
-            <ToastContainer />
-            <Routes>
-              <Route path="*" element={<NotFound />} />
-              {publicRoutes.map((route, index) => {
-                let Page = route.component;
-                if (route.path === "/") {
-                  return (
-                    <Route
-                      key={index}
-                      path={route.path}
-                      element={
-                        isLoggedIn ? (
-                          <Home onLogout={handleLogout} />
-                        ) : (
-                          <LandingPage onLogin={handleLogin} />
-                        )
-                      }
-                    />
-                  );
-                } else if (route.path === "/ideas") {
-                  return (
-                    <Route
-                      key={index}
-                      path={route.path}
-                      element={
-                        isLoggedIn ? (
-                          <Home onLogout={handleLogout} />
-                        ) : (
-                          <Explore onLogin={handleLogin} />
-                        )
-                      }
-                    />
-                  );
-                }
+    <AuthProvider handleLogout={handleLogout}>
+      <MessageProvider>
+        <PackageProvider>
+          <Router>
+            <div className="App">
+              <ToastContainer />
+              <Routes>
+                <Route path="*" element={<NotFound />} />
+                {publicRoutes.map((route, index) => {
+                  let Page = route.component;
+                  if (route.path === "/") {
+                    return (
+                      <Route
+                        key={index}
+                        path={route.path}
+                        element={
+                          isLoggedIn ? (
+                            <Home onLogout={handleLogout} />
+                          ) : (
+                            <LandingPage onLogin={handleLogin} />
+                          )
+                        }
+                      />
+                    );
+                  } else if (route.path === "/ideas") {
+                    return (
+                      <Route
+                        key={index}
+                        path={route.path}
+                        element={
+                          isLoggedIn ? (
+                            <Home onLogout={handleLogout} />
+                          ) : (
+                            <Explore onLogin={handleLogin} />
+                          )
+                        }
+                      />
+                    );
+                  }
 
-                return (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={
-                      isLoggedIn ? (
-                        <Page onLogout={handleLogout} />
-                      ) : (
-                        <Navigate to="/" />
-                      )
-                    }
-                  />
-                );
-              })}
-            </Routes>
-          </div>
-        </Router>
-      </PackageProvider>
-    </MessageProvider>
+                  return (
+                    <Route
+                      key={index}
+                      path={route.path}
+                      element={
+                        isLoggedIn ? (
+                          <Page onLogout={handleLogout} />
+                        ) : (
+                          <Navigate to="/" />
+                        )
+                      }
+                    />
+                  );
+                })}
+              </Routes>
+            </div>
+          </Router>
+        </PackageProvider>
+      </MessageProvider>
+    </AuthProvider>
   );
 }
 

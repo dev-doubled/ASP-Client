@@ -118,7 +118,9 @@ function Admin({ onLogout }) {
   return (
     <>
       {authorize ? (
-        <div>{userData.type !== "Admin" && <NotFound />}</div>
+        <>
+          {userData && userData.type !== "Admin" ? <NotFound /> : <div></div>}
+        </>
       ) : (
         <div className={cx("admin-wrapper")}>
           <MainHeader onLogout={onLogout} type="Admin" />

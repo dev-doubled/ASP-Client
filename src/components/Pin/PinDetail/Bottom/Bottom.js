@@ -57,18 +57,20 @@ function Bottom({
 
   useEffect(() => {
     // Automatically resize the textarea when the content is changed
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height =
-        textareaRef.current.scrollHeight + "px";
+    if (pinInformation.isCheckedComment) {
+      if (textareaRef.current) {
+        textareaRef.current.style.height = "auto";
+        textareaRef.current.style.height =
+          textareaRef.current.scrollHeight + "px";
+      }
+      // Calculate the number of rows based on scrollHeight and clientHeight
+      const extraLines =
+        (textareaRef.current.scrollHeight - textareaRef.current.clientHeight) /
+        20;
+      const calculatedRows = Math.max(1, Math.ceil(extraLines));
+      setTextareaRows(calculatedRows);
     }
-    // Calculate the number of rows based on scrollHeight and clientHeight
-    const extraLines =
-      (textareaRef.current.scrollHeight - textareaRef.current.clientHeight) /
-      20;
-    const calculatedRows = Math.max(1, Math.ceil(extraLines));
-    setTextareaRows(calculatedRows);
-  }, [inputComment]);
+  }, [inputComment, pinInformation.isCheckedComment]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -166,15 +168,8 @@ function Bottom({
       });
   };
 
-  const handleKeyDownComment = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSendComment();
-    }
-  };
-
   const callApiGetAllComments = async () => {
-    setLoadingShowListComment(true);
+    // setLoadingShowListComment(true);
     try {
       const comments = await fetchGetCommentByArtId(pinInformation._id);
       const countTopLevelComments = comments.length;
@@ -191,7 +186,6 @@ function Bottom({
       );
 
       const totalCountComments = countTopLevelComments + countReplyComments;
-
       setListComments(comments);
       setCountComment(totalCountComments);
       setLoadingShowListComment(false);
@@ -207,6 +201,13 @@ function Bottom({
     } catch (error) {
       console.error(`Error fetching replies for comment ${commentId}:`, error);
       return 0;
+    }
+  };
+
+  const handleKeyDownComment = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSendComment();
     }
   };
 
@@ -276,29 +277,35 @@ function Bottom({
             className={cx("avatar")}
           />
         </div>
-        <div className={cx("input-container")}>
-          <textarea
-            className={cx("input")}
-            placeholder="Add a comment"
-            onChange={handleCommentChange}
-            onKeyDown={handleKeyDownComment}
-            value={inputComment}
-            rows={textareaRows}
-            ref={textareaRef}
-            autoFocus={true}
-            spellCheck={false}
-          ></textarea>
-          {inputComment !== "" && (
-            <div className={cx("send-comment-container")}>
-              <div
-                className={cx("send-comment-btn")}
-                onClick={handleSendComment}
-              >
-                <i className={cx("fa-solid fa-paper-plane-top", "icon")}></i>
+        {!pinInformation.isCheckedComment ? (
+          <div className={cx("input-container-disable")}>
+            <div className={cx("text")}>Add a comment</div>
+          </div>
+        ) : (
+          <div className={cx("input-container")}>
+            <textarea
+              className={cx("input")}
+              placeholder="Add a comment"
+              onChange={handleCommentChange}
+              onKeyDown={handleKeyDownComment}
+              value={inputComment}
+              rows={textareaRows}
+              ref={textareaRef}
+              autoFocus={true}
+              spellCheck={false}
+            ></textarea>
+            {inputComment !== "" && (
+              <div className={cx("send-comment-container")}>
+                <div
+                  className={cx("send-comment-btn")}
+                  onClick={handleSendComment}
+                >
+                  <i className={cx("fa-solid fa-paper-plane-top", "icon")}></i>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

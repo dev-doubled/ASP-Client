@@ -160,8 +160,8 @@ function Create({ onLogout }) {
   };
 
   const handlePublishPin = async () => {
-    if(errorMessage) {
-      setErrorMessage("")
+    if (errorMessage) {
+      setErrorMessage("");
     }
     setLoadingPublish(true);
     if (

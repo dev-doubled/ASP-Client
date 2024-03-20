@@ -13,6 +13,7 @@ import Widget from "~/components/Admin/Widget";
 import styles from "./Admin.module.scss";
 import NotFound from "~/components/NotFound";
 import { AuthContext } from "~/contexts/AuthContext";
+import api from "~/services/apiService";
 const cx = classNames.bind(styles);
 
 const colorData = (type) => {
@@ -38,42 +39,42 @@ const colorData = (type) => {
 function Admin({ onLogout }) {
   const { userData } = useContext(AuthContext);
   const [index, setIndex] = useState(0);
-  const widgets = [
+  const [widgets, setWidgets] = useState([
     {
       id: 0,
       type: "Revenue",
       icon: "fa-solid fa-sack-dollar",
       isMoney: true,
-      data: 1500,
+      data: 0,
       title: "Today profit",
       changeData: 200,
       changePercent: 15,
-      previous: [1200, 1300, 1400, 1250, 1400, 1300],
-      current: [1300, 1400, 1500, 1550, 1600, 1700],
+      previous: [],
+      current: [],
     },
     {
       id: 1,
       type: "Artwork",
       icon: "fa-solid fa-image",
       isMoney: false,
-      data: 25,
+      data: 0,
       title: "Today artworks",
       changeData: 5,
       changePercent: 25,
-      previous: [20, 22, 24, 23, 21, 20],
-      current: [22, 24, 25, 28, 30, 32],
+      previous: [],
+      current: [],
     },
     {
       id: 2,
       type: "User",
       icon: "fa-solid fa-user",
       isMoney: false,
-      data: 300,
+      data: 0,
       title: "Today users",
       changeData: 50,
       changePercent: 20,
-      previous: [250, 280, 290, 270, 260, 255],
-      current: [260, 300, 320, 310, 330, 340],
+      previous: [],
+      current: [],
     },
 
     {
@@ -81,14 +82,15 @@ function Admin({ onLogout }) {
       type: "Comment",
       icon: "fa-solid fa-messages-question",
       isMoney: false,
-      data: 50,
+      data: 0,
       title: "Today comments",
       changeData: 10,
       changePercent: 25,
-      previous: [40, 45, 48, 47, 46, 45],
-      current: [45, 50, 52, 55, 58, 60],
+      previous: [],
+      current: [],
     },
-  ];
+  ]);
+  const [packageData, setPackageData] = useState([]);
   const [authorize, setAuthorize] = useState(true);
 
   useEffect(() => {
@@ -113,6 +115,72 @@ function Admin({ onLogout }) {
     };
 
     getUserData();
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await api.get("/admin/getAllData");
+        const data = response.data;
+        const totalAmountUSD = data.totalAmount / 24675;
+        setWidgets((prevWidgets) => {
+          return prevWidgets.map((widget) => {
+            switch (widget.type) {
+              case "Revenue":
+                return {
+                  ...widget,
+                  data: totalAmountUSD,
+                };
+              case "Artwork":
+                return {
+                  ...widget,
+                  data: data.totalArts,
+                };
+              case "User":
+                return {
+                  ...widget,
+                  data: data.totalUsers,
+                };
+              case "Comment":
+                return {
+                  ...widget,
+                  data: data.totalCountAllComments,
+                };
+              default:
+                return widget;
+            }
+          });
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const updatedWidgets = widgets.map((widget) => ({
+      ...widget,
+      previous: Array.from({ length: 6 }, () =>
+        Math.floor(Math.random() * 100)
+      ),
+      current: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100)),
+    }));
+
+    setWidgets(updatedWidgets);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const getPackageData = async () => {
+      try {
+        const response = await api.get("/admin/countPackage");
+        setPackageData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getPackageData();
   }, []);
 
   return (
@@ -154,7 +222,7 @@ function Admin({ onLogout }) {
                   </div>
                   <div className={cx("chart-revenue-by-category")}>
                     <div className={cx("title")}>Total Package</div>
-                    <DoughnutChart />
+                    <DoughnutChart packageData={packageData} />
                   </div>
                 </div>
               </div>

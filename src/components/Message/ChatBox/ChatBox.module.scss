@@ -4,10 +4,18 @@
   border-right: 1px solid #e5e5e5;
 
   .chat-box-container {
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    .emojiPickerContainer {
+      position: absolute;
+      z-index: 10;
+      right: 00px;
+      bottom: 60px;
+    }
 
     .message-box-header {
       width: 100%;
